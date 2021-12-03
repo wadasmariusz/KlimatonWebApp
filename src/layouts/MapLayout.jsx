@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
 
 const PublicLayout = () => {
   return (
@@ -11,7 +10,6 @@ const PublicLayout = () => {
       </Helmet>
       <Header />
       <Outlet />
-      <Footer />
     </>
   );
 };

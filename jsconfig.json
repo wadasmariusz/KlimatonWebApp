@@ -6,7 +6,8 @@
       // configure path for absolute import
       "@/styles/*": ["./styles/*"],
       "@/views/*": ["./views/*"],
-      "@/layouts/*": ["./layouts/*"]
+      "@/layouts/*": ["./layouts/*"],
+      "@/crud/*": ["./app/CRUD/*"]
     }
   },
   "exclude": ["node_modules", "build", "dist"]

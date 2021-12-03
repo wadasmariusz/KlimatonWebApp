@@ -19,6 +19,7 @@
     "no-unused-expressions": "warn",
     "no-unused-vars": "warn",
     "no-unused-labels": "warn",
-    "no-duplicate-case": "warn"
+    "no-duplicate-case": "warn",
+    "react/prop-types": 0
   }
 }

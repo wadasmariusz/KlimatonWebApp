@@ -7,8 +7,14 @@
     @apply h-full w-full;
   }
 
+  *,
+  *::before,
+  *::after {
+    @apply box-border font-sans;
+  }
+
   body {
-    @apply overflow-x-hidden antialiased bg-white dark:bg-gray-900 w-full h-full;
+    @apply overflow-x-hidden antialiased bg-gray-100 dark:bg-gray-900 w-full h-full;
   }
 
   body > #root {
