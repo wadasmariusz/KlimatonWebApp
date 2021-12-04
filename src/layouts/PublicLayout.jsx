@@ -7,7 +7,7 @@ const PublicLayout = () => {
   return (
     <>
       <Helmet>
-        <title>Strona główna | Klimaton</title>
+        <title>Strona główna | Connected City</title>
       </Helmet>
       <Header />
       <Outlet />

@@ -1,6 +1,4 @@
 const InputSelect = ({ options }) => {
-  console.log(options);
-
   return (
     <select
       id="countries"

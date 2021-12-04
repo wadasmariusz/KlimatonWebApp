@@ -7,7 +7,9 @@
       "@/styles/*": ["./styles/*"],
       "@/views/*": ["./views/*"],
       "@/layouts/*": ["./layouts/*"],
-      "@/crud/*": ["./app/CRUD/*"]
+      "@/crud/*": ["./app/CRUD/*"],
+      "@/hooks/*": ["./app/hooks/*"],
+      "@/app/*": ["./app/*"]
     }
   },
   "exclude": ["node_modules", "build", "dist"]

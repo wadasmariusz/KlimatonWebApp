@@ -1,10 +1,10 @@
 import axios from "axios";
+import { API_URL } from "@/app/config/env";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-export const login = (data) =>
-  axios({
-    method: "post",
-    url: `${API_URL}/auth/login`,
+export const login = (data) => {
+  return axios({
+    method: "POST",
+    url: `${API_URL}/account/sign-in`,
     data,
   });
+};

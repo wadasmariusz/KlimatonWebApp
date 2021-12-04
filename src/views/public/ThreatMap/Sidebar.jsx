@@ -92,7 +92,7 @@ const Sidebar = () => {
     >
       <div className="flex w-full jutify-end">
         <button className="appearance-none p-2 ml-auto">
-          <IoClose color="#fff" size={24} />
+          <IoClose color="currentColor" size={24} />
         </button>
       </div>
       <h2 className="text-black dark:text-gray-400 text-base mb-1">

@@ -39,7 +39,7 @@ const SearchForm = () => {
         <InputText />
         <button
           type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-yellow-500 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-yellow-500 dark:hover:bg-yellow-400 dark:focus:ring-yellow-300"
         >
           <BiSearchAlt color="white" size={24} />
         </button>
