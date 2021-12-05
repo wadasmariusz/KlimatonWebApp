@@ -1,12 +1,10 @@
 import { IoWaterSharp, CgComment, ImArrowUp } from "react-icons/all";
 import { IconContext } from "react-icons/lib";
 
-const ThreatListItem = ({
-  threatName,
-  description,
-  commentCount,
-  upvoteCount,
-}) => {
+const ThreatListItem = ({ title, description }) => {
+  const upvoteCount = Math.floor(Math.random() * 10);
+  const commentCount = Math.floor(Math.random() * 10);
+
   return (
     <div className="rounded bg-gray-200 dark:bg-primary-dark dark:hover:bg-gray-800 hover:bg-gray-300 text-gray-100 p-4 flex flex-col justify-between gap-8 cursor-pointer">
       <div>
@@ -17,7 +15,7 @@ const ThreatListItem = ({
             <IoWaterSharp color="currectColor" size={16} />
           </IconContext.Provider> */}
           <h3 className="m-0 text-base text-black dark:text-gray-100">
-            {threatName}
+            {title}
           </h3>
         </div>
         <p className="text-sm overflow-hidden overflow-ellipsis text-gray-500 dark:text-gray-300 max-h-16 text-justify">

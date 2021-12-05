@@ -14,7 +14,8 @@ const LazyHome = lazy(() => import("@/views/public/Home"));
 const LazyThreatMap = lazy(() =>
   import("@/views/public/ThreatMap/ViewThreatMap")
 );
-const LazyDashboard = lazy(() => import("../views/dashboard/index"));
+const LazyDashboard = lazy(() => import("../views/dashboard/Index"));
+const LazyRanking = lazy(() => import("../views/public/ranking/Index"));
 
 const AppRouter = () => {
   return (
@@ -35,6 +36,7 @@ const AppRouter = () => {
 
         <Route exact path={"/"} element={<LazyPublicLayout />}>
           <Route index element={<LazyHome />} />
+          <Route path={"/ranking"} element={<LazyRanking />} />
         </Route>
 
         <Route path="*" element={<Lazy404 />} />

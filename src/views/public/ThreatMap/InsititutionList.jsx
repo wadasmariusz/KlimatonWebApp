@@ -7,8 +7,6 @@ import GetCustomPin from "../../../components/map/GetCustomPin";
 const InsititutionList = () => {
   const { data } = useQueryContext();
 
-  console.log(data);
-
   return (
     <LayersControl.Overlay checked name="Instytucje">
       <LayerGroup>

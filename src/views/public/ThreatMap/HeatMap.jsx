@@ -2,13 +2,15 @@ import L from "leaflet";
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 import "leaflet.heat";
+import { useQueryContext } from "../../../app/context/queries/QueryProvider";
 
-const HeatMap = ({ addressPoints }) => {
+const HeatMap = () => {
   const map = useMap();
+  const { data } = useQueryContext();
 
   useEffect(() => {
-    if (addressPoints.length === 0) return;
-    L.heatLayer(addressPoints, { minOpacity: 0.2, radius: 40 }).addTo(map);
+    if (data.length === 0) return;
+    L.heatLayer(data, { radius: 10 }).addTo(map);
   }, []);
 
   return null;

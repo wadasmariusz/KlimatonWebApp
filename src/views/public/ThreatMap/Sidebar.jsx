@@ -2,9 +2,13 @@ import { useMap } from "react-leaflet";
 import SearchForm from "./SearchForm";
 import ThreatList from "./ThreatList";
 import { IoClose } from "react-icons/all";
+import { useQueryContext } from "../../../app/context/queries/QueryProvider";
 
-const Sidebar = ({ threatData }) => {
+const Sidebar = () => {
   const map = useMap();
+  const { data } = useQueryContext();
+
+  console.log(data);
 
   const disableControls = () => {
     map.dragging.disable();
@@ -40,7 +44,7 @@ const Sidebar = ({ threatData }) => {
         Wprowadź adres
       </h2>
       <SearchForm />
-      <ThreatList data={threatData} />
+      <ThreatList data={data} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const setupAxios = (store) => {
+  console.log("siema kurwa jest setup");
   axios.interceptors.request.use(
     (config) => {
       const {

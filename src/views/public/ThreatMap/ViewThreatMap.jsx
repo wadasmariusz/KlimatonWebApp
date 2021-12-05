@@ -7,6 +7,8 @@ import {
 import Sidebar from "./Sidebar";
 import { useGetInstitutions } from "../../../app/CRUD/institutions/getInsitutions";
 import { useGetSensors } from "../../../app/CRUD/sensors/getSensors";
+import { useGetPopulation } from "../../../app/CRUD/populations/getPopulation";
+import { useGetReports } from "../../../app/CRUD/reports/getReports";
 import { QueryProvider } from "../../../app/context/queries/QueryProvider";
 import { QueryIsSuccess } from "../../../app/context/queries/QueryIsSuccess";
 import { QueryHasResults } from "../../../app/context/queries/QueryHasResults";
@@ -87,12 +89,8 @@ const threatData = [
 const ViewThreatMap = () => {
   const institutionsData = useGetInstitutions();
   const sensorsData = useGetSensors();
-  const heatPoints = institutionsData?.data?.map((item) => ({
-    lat: item.location.lat,
-    lng: item.location.lng,
-  }));
-
-  // console.log(heatPoints);
+  const populationData = useGetPopulation();
+  const reportsData = useGetReports();
 
   return (
     <>
@@ -106,7 +104,11 @@ const ViewThreatMap = () => {
         className="bg-white dark:bg-gray-900 relative z-0"
         style={{ height: "100vh" }}
       >
-        <Sidebar threatData={threatData} />
+        <QueryProvider {...reportsData}>
+          <QueryIsSuccess>
+            <Sidebar />
+          </QueryIsSuccess>
+        </QueryProvider>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -133,8 +135,11 @@ const ViewThreatMap = () => {
               ))}
             </LayerGroup>
           </LayersControl.Overlay>
-
-          <HeatMap addressPoints={heatPoints} />
+          <QueryProvider {...populationData}>
+            <QueryIsSuccess>
+              <HeatMap />
+            </QueryIsSuccess>
+          </QueryProvider>
         </LayersControl>
         <AddReport />
       </MapContainer>

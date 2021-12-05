@@ -5,7 +5,6 @@ import CustomGarbageMarker from "./CustomGarbageMarker";
 import CustomMarker from "./CustomMaker";
 
 const GetCustomThreatMarker = (props) => {
-  console.log(props);
   switch (props.type) {
     case 12:
       return <CustomGarbageMarker {...props} />;
