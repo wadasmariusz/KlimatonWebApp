@@ -6,7 +6,7 @@ import { InputText } from "../../../components/form/Input_Text";
 import { IoClose, MdOutlineTitle } from "react-icons/all";
 import { InputSubmit } from "../../../components/form/Input_Submit";
 import { InputTextarea } from "../../../components/form/Input_Textarea";
-import { createReport } from "../../../app/crud/reports/createReport";
+import { createReport } from "../../../app/CRUD/reports/createReport";
 
 const schema = yup.object().shape({
   title: yup.string().required(),
