@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/city-200.png";
+import { useSelector, useDispatch } from "react-redux";
+import { actionLogout } from "../../store/auth/authActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.auth.email);
+
+  console.log(email);
+
   return (
     <header className="text-black bg-white dark:text-gray-400 dark:bg-gray-900 body-font">
       <div className="mx-auto flex flex-wrap px-8 py-5 flex-col md:flex-row items-center">
@@ -19,23 +26,40 @@ const Header = () => {
             Mapa zagrożeń
           </Link>
         </nav>
-        <div className="flex gap-4">
-          <Link
-            to="/auth/register"
-            type="button"
-            className="rounded px-5 py-2.5 overflow-hidden group bg-yellow-400 relative hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 text-black hover:ring-2 hover:ring-offset-2 hover:ring-yellow-400 transition-all ease-out duration-300"
-          >
-            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-            <span className="relative">Rejestracja</span>
-          </Link>
-          <Link
-            to="/auth/login"
-            type="button"
-            className="rounded px-5 py-2.5 overflow-hidden group bg-yellow-400 relative hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 text-black hover:ring-2 hover:ring-offset-2 hover:ring-yellow-400 transition-all ease-out duration-300"
-          >
-            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-            <span className="relative">Zaloguj się</span>
-          </Link>
+        <div className="flex gap-4 items-center">
+          {email && (
+            <>
+              <strong className="mr-5">{email}</strong>
+              <button
+                onClick={() => dispatch(actionLogout())}
+                type="button"
+                className="rounded px-5 py-2.5 overflow-hidden group bg-yellow-400 relative hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 text-black hover:ring-2 hover:ring-offset-2 hover:ring-yellow-400 transition-all ease-out duration-300"
+              >
+                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span className="relative">Wyloguj</span>
+              </button>
+            </>
+          )}
+          {!email && (
+            <>
+              <Link
+                to="/auth/register"
+                type="button"
+                className="rounded px-5 py-2.5 overflow-hidden group bg-yellow-400 relative hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 text-black hover:ring-2 hover:ring-offset-2 hover:ring-yellow-400 transition-all ease-out duration-300"
+              >
+                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span className="relative">Rejestracja</span>
+              </Link>
+              <Link
+                to="/auth/login"
+                type="button"
+                className="rounded px-5 py-2.5 overflow-hidden group bg-yellow-400 relative hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 text-black hover:ring-2 hover:ring-offset-2 hover:ring-yellow-400 transition-all ease-out duration-300"
+              >
+                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                <span className="relative">Zaloguj się</span>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

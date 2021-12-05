@@ -8,8 +8,6 @@ const Sidebar = () => {
   const map = useMap();
   const { data } = useQueryContext();
 
-  console.log(data);
-
   const disableControls = () => {
     map.dragging.disable();
     map.touchZoom.disable();

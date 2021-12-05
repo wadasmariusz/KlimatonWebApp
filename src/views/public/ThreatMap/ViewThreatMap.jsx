@@ -18,6 +18,7 @@ import AddReport from "./AddReport";
 import Helmet from "react-helmet";
 import HeatMap from "./HeatMap";
 import GetCustomThreatMarker from "../../../components/map/GetCustomThreatPin";
+import { useSelector } from "react-redux";
 
 const threatData = [
   {
@@ -87,6 +88,7 @@ const threatData = [
 ];
 
 const ViewThreatMap = () => {
+  const email = useSelector((state) => state.auth.email);
   const institutionsData = useGetInstitutions();
   const sensorsData = useGetSensors();
   const populationData = useGetPopulation();
@@ -141,7 +143,7 @@ const ViewThreatMap = () => {
             </QueryIsSuccess>
           </QueryProvider>
         </LayersControl>
-        <AddReport />
+        {email && <AddReport />}
       </MapContainer>
     </>
   );
