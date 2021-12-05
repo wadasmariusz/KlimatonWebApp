@@ -3,50 +3,91 @@ import * as yup from "yup";
 import { useHookFormMutation } from "../../app/hooks/useHookFormMutation";
 import { useForm, FormProvider } from "react-hook-form";
 import { InputText } from "../../components/form/Input_Text";
-import { MdAlternateEmail, RiLockPasswordLine } from "react-icons/all";
-import { login } from "../../app/CRUD/auth/login";
+import {
+  MdAlternateEmail,
+  RiLockPasswordLine,
+  AiOutlineUser,
+} from "react-icons/all";
+import { register } from "../../app/CRUD/auth/register";
 import { InputSubmit } from "@/components/form/Input_Submit";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { actionLogin } from "../../store/auth/authActions";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { featureUnavailable } from "../../app/utils/featureUnavaliable";
 
 const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
+  confirmPassword: yup
+    .string()
+    .required()
+    .oneOf([yup.ref("password"), null]),
 });
 
-const Login = () => {
-  const dispatch = useDispatch();
+const Register = () => {
   const navigate = useNavigate();
+
   const handleSuccess = ({ data }) => {
     console.log(data);
-    dispatch(actionLogin(data));
-    toast.success("Pomyślnie zalogowano.");
-    navigate("/map");
+    toast.success("Rejestracja przebiegła pomyślnie! Możesz się zalogować.");
+    navigate("/auth/login");
   };
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: schema.default(),
   });
-  const mutation = useHookFormMutation(methods, login, { handleSuccess });
+  const mutation = useHookFormMutation(methods, register, { handleSuccess });
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 py-6 sm:py-8 lg:py-12 mt-10">
       <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
         <h2 className="text-gray-800 dark:text-gray-100 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">
-          Logowanie
+          Rejestracja
         </h2>
         <FormProvider {...methods}>
           <form
             onSubmit={mutation.mutate}
             className="max-w-lg bg-gray-100 dark:bg-primary-dark rounded mx-auto border dark:border-none"
           >
-            <div className="flex flex-col gap-4 p-4 md:p-8 text-gray-800 dark:text-gray-100">
+            <div className="flex flex-col gap-4 p-4 md:p-8">
+              <div className="flex justify-between gap-4 items-center">
+                <div>
+                  <label
+                    htmlFor="firstName"
+                    className="inline-block text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2"
+                  >
+                    Imię
+                  </label>
+                  <InputText
+                    required
+                    placeholder="Imię"
+                    name="firstName"
+                    type="text"
+                    icon={<AiOutlineUser color="currentColor" size={16} />}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="lastName"
+                    className="inline-block text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2"
+                  >
+                    Nazwisko
+                  </label>
+                  <InputText
+                    required
+                    placeholder="Nazwisko"
+                    name="lastName"
+                    type="text"
+                    icon={<AiOutlineUser color="currentColor" size={16} />}
+                  />
+                </div>
+              </div>
+
               <div>
                 <label
                   htmlFor="email"
-                  className="inline-block text-sm sm:text-base mb-2"
+                  className="inline-block text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2"
                 >
                   Adres Email
                 </label>
@@ -74,8 +115,23 @@ const Login = () => {
                   icon={<RiLockPasswordLine color="currentColor" size={16} />}
                 />
               </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="confirmPassword"
+                  className="inline-block text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2"
+                >
+                  Powtórz hasło
+                </label>
+                <InputText
+                  required
+                  placeholder="Powtórz hasło"
+                  name="confirmPassword"
+                  type="password"
+                  icon={<RiLockPasswordLine color="currentColor" size={16} />}
+                />
+              </div>
 
-              <InputSubmit value="Zaloguj się" />
+              <InputSubmit value="Załóż konto" />
 
               <div className="flex justify-center items-center relative my-4">
                 <span className="h-px bg-gray-300 absolute inset-x-0"></span>
@@ -84,7 +140,11 @@ const Login = () => {
                 </span>
               </div>
 
-              <button className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+              <button
+                type="button"
+                onClick={featureUnavailable}
+                className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"
+              >
                 <svg
                   className="w-5 h-5 flex-shrink-0"
                   width="24"
@@ -101,7 +161,11 @@ const Login = () => {
                 Zaloguj przez Facebook
               </button>
 
-              <button className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+              <button
+                type="button"
+                onClick={featureUnavailable}
+                className="flex justify-center items-center bg-white hover:bg-gray-100 active:bg-gray-200 border border-gray-300 focus-visible:ring ring-gray-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"
+              >
                 <svg
                   className="w-5 h-5 flex-shrink-0"
                   width="24"
@@ -133,12 +197,12 @@ const Login = () => {
 
             <div className="flex justify-center items-center bg-gray-200 dark:bg-gray-800 p-4">
               <p className="text-gray-500 text-sm text-center">
-                Nie masz konta?{" "}
+                Masz już konto?{" "}
                 <Link
-                  to="/auth/register"
+                  to="/auth/login"
                   className="text-gray-800 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-200 dark:active:text-gray-200 transition duration-100"
                 >
-                  Zarejestruj się
+                  Zaloguj się
                 </Link>
               </p>
             </div>
@@ -149,4 +213,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

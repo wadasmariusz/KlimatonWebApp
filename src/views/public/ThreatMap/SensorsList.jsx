@@ -1,20 +1,17 @@
-import CustomSchoolMarker from "../../../components/map/CustomSchoolMarker";
+import CustomSensorMarker from "../../../components/map/CustomSensorMarker";
 import { useQueryContext } from "../../../app/context/queries/QueryProvider";
 import { LayersControl, LayerGroup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import GetCustomPin from "../../../components/map/GetCustomPin";
 
-const InsititutionList = () => {
+const SensorsList = () => {
   const { data } = useQueryContext();
 
-  console.log(data);
-
   return (
-    <LayersControl.Overlay checked name="Instytucje">
+    <LayersControl.Overlay name="Sensory">
       <LayerGroup>
         <MarkerClusterGroup>
-          {data.map((props, i) => (
-            <GetCustomPin position={props.location} {...props} />
+          {data.map(({ location, name, id }) => (
+            <CustomSensorMarker key={id} position={location} name={name} />
           ))}
         </MarkerClusterGroup>
       </LayerGroup>
@@ -22,4 +19,4 @@ const InsititutionList = () => {
   );
 };
 
-export default InsititutionList;
+export default SensorsList;

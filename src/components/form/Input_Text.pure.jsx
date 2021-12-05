@@ -12,8 +12,7 @@ export const InputTextPure = ({
   error,
   ...props
 }) => {
-  const placeholder =
-    passedPlaceholder ?? `${label ?? ""}${required ? "*" : ""}`;
+  const placeholder = passedPlaceholder ?? `${label ?? ""}`;
 
   const handleChange = (e) => {
     onChange(e?.target?.value);

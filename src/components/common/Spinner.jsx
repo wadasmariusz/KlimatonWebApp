@@ -4,7 +4,7 @@ const Spinner = () => {
   return (
     <div className="w-full h-full grid place-items-center">
       <CgSpinner
-        className="animate-spin text-white dark:text-gray-800"
+        className="animate-spin text-gray-400 dark:text-gray-800"
         size={48}
       />
     </div>

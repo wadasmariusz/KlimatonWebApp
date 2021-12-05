@@ -3,66 +3,7 @@ import SearchForm from "./SearchForm";
 import ThreatList from "./ThreatList";
 import { IoClose } from "react-icons/all";
 
-const threatData = [
-  {
-    id: 1,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 2,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 3,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 4,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 5,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 6,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 7,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-  {
-    id: 8,
-    threatId: 1,
-    threatName: "Podtopienie",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu dolor nec risus convallis accumsan. Cras quis posuere tellus. Fusce dictum pharetra ligula in sollicitudin. Vestibulum suscipit pulvinar magna, vel sodales arcu congue vel. Aenean pellentesque nulla hendrerit ligula porttitor, vel vestibulum urna eleifend. Mauris tincidunt libero ante, bibendum gravida nisl suscipit ac. Donec a dapibus nisl. Quisque ut ligula vitae nisi porta pellentesque. Sed aliquam ligula ac ex scelerisque lacinia.",
-  },
-];
-
-const Sidebar = () => {
+const Sidebar = ({ threatData }) => {
   const map = useMap();
 
   const disableControls = () => {
@@ -86,7 +27,7 @@ const Sidebar = () => {
   return (
     <div
       style={{ zIndex: "99999" }}
-      className="bg-gray-100 dark:bg-gray-900 rounded p-6 max-w-md absolute right-8 top-8 bottom-8 overflow-hidden"
+      className="bg-gray-100 dark:bg-gray-900 rounded p-6 pb-0 max-w-md absolute right-8 top-8 bottom-8 overflow-hidden flex flex-col"
       onMouseEnter={disableControls}
       onMouseLeave={enableControls}
     >
